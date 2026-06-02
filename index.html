@@ -3,378 +3,424 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DAVIS DILANCHIAN // PROJECTS</title>
-<meta name="description" content="Things Davis Dilanchian is building — apps, tools, and experiments, updated as they ship." />
+<title>DECLASSIFIED // SUBJECT FILE: DILANCHIAN, D.</title>
+<meta name="description" content="Declassified subject file: active development projects of Davis Dilanchian." />
 
-<meta property="og:title" content="Davis Dilanchian — Projects" />
-<meta property="og:description" content="Things I'm building — apps, tools, and experiments." />
+<meta property="og:title" content="Davis Dilanchian — Declassified Project File" />
+<meta property="og:description" content="SUBJECT FILE: active development projects. Some redactions applied." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://davisdilanchian.com/" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
 <style>
   :root {
-    --bg: #06070a;
-    --panel: #0c0e13;
-    --panel-2: #11141b;
-    --line: #1e2330;
-    --line-bright: #2c3343;
-    --txt: #e7eaf2;
-    --mut: #8b93a7;
-    --dim: #565d70;
-    --grn: #4cf08a;
-    --blu: #5b9bff;
-    --org: #ff9f45;
-    --red: #ff5a52;
-    --mag: #ff5cf0;
-    --cyn: #43e5e0;
-    --ind: #9d8bff;
-    --mono: 'JetBrains Mono', ui-monospace, monospace;
-    --disp: 'Space Grotesk', system-ui, sans-serif;
+    --desk: #1a1815;
+    --paper: #e9e3d2;
+    --paper-edge: #ddd6c2;
+    --ink: #2a2620;
+    --ink-soft: #4a443a;
+    --faint: #87806e;
+    --rule: #b9b09a;
+    --rule-dark: #8c8470;
+    --stamp: #9a1f17;
+    --stamp2: #1c3a6e;
+    --type: 'Courier Prime', 'Courier New', monospace;
+    --stampfont: 'Special Elite', 'Courier Prime', monospace;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: var(--mono);
-    background: var(--bg);
-    color: var(--txt);
-    line-height: 1.55;
+    font-family: var(--type);
+    background: var(--desk);
+    color: var(--ink);
+    line-height: 1.6;
+    padding: 28px 14px 60px;
+    background-image: radial-gradient(120% 80% at 50% 0%, #25221d, #131110 80%);
     -webkit-font-smoothing: antialiased;
-    /* faint instrument grid */
+  }
+
+  /* ===== THE SHEET ===== */
+  .sheet {
+    position: relative;
+    max-width: 900px; margin: 0 auto;
+    background: var(--paper);
     background-image:
-      linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-    background-size: 40px 40px;
+      url('assets/speckle.png'),
+      url('assets/paper-noise.png'),
+      linear-gradient(180deg, #ece6d6, #e6e0ce);
+    background-size: 400px 400px, 220px 220px, 100% 100%;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 2px 0 var(--paper-edge);
+    padding: 44px 50px 40px;
+    border: 1px solid #cbc3ad;
   }
-  body::before {
-    content:"";
-    position: fixed; inset: 0;
-    background: radial-gradient(120% 60% at 50% -10%, rgba(91,155,255,0.10), transparent 60%);
-    pointer-events: none; z-index: 0;
+  /* photocopy vignette + edge grime */
+  .sheet::after {
+    content:""; position:absolute; inset:0; pointer-events:none;
+    box-shadow: inset 0 0 90px rgba(60,52,38,0.18), inset 0 0 14px rgba(40,34,22,0.12);
+    mix-blend-mode: multiply;
   }
 
-  .wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  a { color: inherit; }
 
-  .label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
-
-  /* ---------------- TOP BAR ---------------- */
-  .topbar {
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    border-bottom: 1px solid var(--line);
-    padding: 14px 0; flex-wrap: wrap;
+  /* ===== CLASSIFICATION BANNERS ===== */
+  .classbar {
+    text-align: center; font-family: var(--stampfont);
+    letter-spacing: 0.42em; font-size: 17px; color: var(--ink);
+    border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink);
+    padding: 5px 0; margin-bottom: 4px; font-weight: 700;
   }
-  .topbar .sys { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .live-pill {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-size: 10.5px; letter-spacing: 0.14em; color: var(--grn);
-    border: 1px solid rgba(76,240,138,0.3); border-radius: 4px; padding: 4px 9px;
-    background: rgba(76,240,138,0.06);
+  .classbar.redacted-bar { letter-spacing: 0.2em; font-size: 14px; }
+  .classbar .small { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-soft); }
+
+  /* ===== CONTROL HEADER ===== */
+  .control {
+    display: flex; justify-content: space-between; gap: 20px;
+    font-size: 11px; letter-spacing: 0.04em; color: var(--ink-soft);
+    margin: 12px 0; text-transform: uppercase;
   }
-  .blip { width: 7px; height: 7px; border-radius: 50%; background: var(--grn); box-shadow: 0 0 8px var(--grn); animation: pulse 1.8s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
-  .clock { font-size: 10.5px; letter-spacing: 0.12em; color: var(--mut); }
+  .control .col { line-height: 1.7; }
+  .control b { color: var(--ink); }
+  .control .col.r { text-align: right; }
 
-  .socials { display: flex; gap: 6px; }
-  .soc {
-    width: 30px; height: 30px; display: grid; place-items: center;
-    border: 1px solid var(--line); border-radius: 6px; color: var(--mut);
-    background: var(--panel); transition: all .16s ease;
+  .hr { border: none; border-top: 1.5px solid var(--ink); margin: 14px 0; }
+  .hr.thin { border-top: 1px solid var(--rule); }
+  .hr.dbl { border-top: 3px double var(--ink); }
+
+  /* ===== STAMPS ===== */
+  .stamp {
+    position: absolute; font-family: var(--stampfont);
+    color: var(--stamp); border: 4px solid var(--stamp);
+    padding: 6px 16px; font-size: 30px; letter-spacing: 0.06em;
+    border-radius: 6px; text-transform: uppercase; font-weight: 700;
+    opacity: 0.82; mix-blend-mode: multiply; pointer-events: none;
+    box-shadow: inset 0 0 0 2px rgba(154,31,23,0.25);
+    text-shadow: 1px 1px 0 rgba(154,31,23,0.15);
   }
-  .soc:hover { color: var(--txt); border-color: var(--line-bright); background: var(--panel-2); transform: translateY(-1px); }
-  .soc svg { width: 15px; height: 15px; fill: currentColor; }
-
-  /* ---------------- HERO ---------------- */
-  header.hero { padding: 54px 0 30px; position: relative; }
-  .eyebrow { color: var(--blu); letter-spacing: 0.22em; font-size: 11px; margin-bottom: 16px; }
-  .eyebrow .star { color: var(--mag); }
-  h1 {
-    font-family: var(--disp); font-weight: 700;
-    font-size: clamp(2.5rem, 7vw, 5rem); line-height: 0.98; letter-spacing: -0.02em;
-    margin-bottom: 18px;
+  .stamp.declassified { top: 90px; right: 22px; transform: rotate(-11deg); }
+  .stamp.eyes { top: 330px; left: 18px; transform: rotate(7deg); font-size: 18px; border-width:3px; }
+  .stamp.release {
+    position: static; display: inline-block; transform: rotate(-1.5deg);
+    color: var(--stamp2); border-color: var(--stamp2); font-size: 12px;
+    letter-spacing: 0.05em; padding: 5px 10px; margin: 6px 0; line-height: 1.3;
+    box-shadow: inset 0 0 0 2px rgba(28,58,110,0.2);
   }
-  h1 .slash { color: var(--dim); font-weight: 500; }
-  .sub { color: var(--mut); max-width: 560px; font-size: 13.5px; line-height: 1.7; }
-  .handle { color: var(--blu); }
 
-  /* telemetry strip */
-  .telemetry {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-    background: var(--line); border: 1px solid var(--line);
-    margin-top: 34px; border-radius: 8px; overflow: hidden;
+  /* ===== TITLE BLOCK ===== */
+  .titleblock { margin: 16px 0 6px; }
+  .titleblock .re { font-size: 12px; letter-spacing: 0.12em; color: var(--ink-soft); text-transform: uppercase; }
+  .titleblock h1 {
+    font-family: var(--stampfont); font-weight: 700;
+    font-size: clamp(1.7rem, 4.6vw, 2.7rem); letter-spacing: 0.02em;
+    line-height: 1.12; margin: 6px 0 4px; text-transform: uppercase;
   }
-  .tcell { background: var(--panel); padding: 14px 16px; }
-  .tcell .label { display: block; margin-bottom: 6px; }
-  .tcell .val { font-family: var(--disp); font-weight: 600; font-size: 1.5rem; letter-spacing: -0.01em; }
-  .tcell .val small { font-family: var(--mono); font-size: 11px; color: var(--dim); font-weight: 400; margin-left: 3px; }
-  .tcell.a .val { color: var(--grn); }
-  .tcell.b .val { color: var(--org); }
-  .tcell.c .val { color: var(--blu); }
-  .tcell.d .val { color: var(--mag); }
+  .abstract { font-size: 13.5px; margin: 14px 0; max-width: 60ch; }
+  .abstract .fld { color: var(--faint); }
 
-  /* ---------------- SECTION HEAD ---------------- */
-  .sec-head { display: flex; align-items: center; gap: 12px; margin: 50px 0 18px; }
-  .sec-head .label { color: var(--mut); }
-  .sec-head .rule { flex: 1; height: 1px; background: var(--line); }
-
-  /* filters */
-  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
-  .chip {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 7px 13px; border-radius: 5px; border: 1px solid var(--line);
-    background: var(--panel); color: var(--mut); cursor: pointer; transition: all .15s ease;
+  /* exhibit figure in header */
+  .header-grid { display: grid; grid-template-columns: 1fr 168px; gap: 24px; align-items: start; }
+  .exhibit {
+    border: 1px solid var(--ink); padding: 6px; background: #f4efe0;
+    transform: rotate(1.4deg); box-shadow: 2px 3px 6px rgba(0,0,0,0.25);
   }
-  .chip:hover { border-color: var(--line-bright); color: var(--txt); }
-  .chip.active { border-color: var(--blu); color: var(--blu); background: rgba(91,155,255,0.08); }
+  .exhibit img { width: 100%; display: block; filter: contrast(1.05); mix-blend-mode: multiply; }
+  .exhibit .cap { font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); padding: 5px 2px 1px; text-align: center; }
 
-  /* ---------------- GRID ---------------- */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; padding-bottom: 70px; }
-
-  .mod {
-    position: relative; background: var(--panel); border: 1px solid var(--line);
-    border-radius: 10px; padding: 18px; display: flex; flex-direction: column;
-    transition: border-color .2s ease, transform .2s ease, background .2s ease;
-    --accent: var(--blu);
+  /* ===== REDACTION ===== */
+  .redact {
+    background: #16140f; color: transparent; border-radius: 1px;
+    padding: 0 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+    cursor: help; transition: color .12s, background .12s; user-select: none;
+    text-shadow: none;
   }
-  .mod:hover { border-color: var(--line-bright); background: var(--panel-2); transform: translateY(-2px); }
-  /* corner brackets */
-  .mod::before, .mod::after {
-    content:""; position: absolute; width: 9px; height: 9px; pointer-events:none;
-    border-color: var(--accent); opacity: 0.55;
+  .redact:hover { background: #d8cfb6; color: var(--stamp); }
+  .redact::selection { background: transparent; }
+
+  /* ===== DOSSIER / FILTER ===== */
+  .sec {
+    font-family: var(--stampfont); font-size: 13px; letter-spacing: 0.16em;
+    text-transform: uppercase; margin: 26px 0 6px; display:flex; align-items:center; gap:12px;
   }
-  .mod::before { top: 8px; right: 8px; border-top: 1.5px solid; border-right: 1.5px solid; }
-  .mod::after { bottom: 8px; left: 8px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
+  .sec .ln { flex:1; height:0; border-top:1.5px solid var(--ink); }
+  .sec .ct { font-family: var(--type); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.06em; }
 
-  .mod-top { display: flex; align-items: center; gap: 13px; margin-bottom: 14px; }
-  .idx { font-size: 10.5px; color: var(--dim); letter-spacing: 0.1em; align-self: flex-start; padding-top: 3px; }
-  .ico {
-    flex: 0 0 auto; width: 50px; height: 50px; border-radius: 12px; overflow: hidden;
-    border: 1px solid var(--line-bright); background: #000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 22px; }
+  .tab {
+    font-family: var(--type); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    background: transparent; border: 1.5px solid var(--ink); color: var(--ink);
+    padding: 4px 12px; cursor: pointer;
   }
-  .ico img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .mod-id { flex: 1; min-width: 0; }
-  .mod-name { font-family: var(--disp); font-weight: 600; font-size: 1.18rem; letter-spacing: -0.01em; }
-  .status { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; letter-spacing: 0.14em; color: var(--mut); margin-top: 3px; }
-  .status .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 7px var(--accent); }
+  .tab::before { content:"[ "; } .tab::after { content:" ]"; }
+  .tab:hover { background: rgba(40,34,22,0.07); }
+  .tab.active { background: var(--ink); color: var(--paper); }
 
-  .desc { color: var(--mut); font-size: 12.5px; line-height: 1.65; flex-grow: 1; }
+  /* ===== FILE ENTRIES ===== */
+  .file { position: relative; padding: 18px 0 22px; border-top: 1.5px solid var(--ink); }
+  .file:first-of-type { border-top: 3px double var(--ink); }
+  .file-grid { display: grid; grid-template-columns: 118px 1fr; gap: 22px; align-items: start; }
 
-  .cells { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
-  .cell {
-    font-size: 10px; letter-spacing: 0.06em; color: var(--dim);
-    border: 1px solid var(--line); border-radius: 4px; padding: 3px 7px; background: rgba(255,255,255,0.015);
+  .file-exhibit {
+    border: 1px solid var(--ink); padding: 5px; background: #f4efe0;
+    box-shadow: 2px 3px 5px rgba(0,0,0,0.2);
   }
-  .cell b { color: var(--mut); font-weight: 500; }
+  .file-exhibit img { width: 100%; display: block; mix-blend-mode: multiply; }
+  .file-exhibit .cap { font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); padding: 4px 1px 0; text-align: center; }
+  .file:nth-child(odd) .file-exhibit { transform: rotate(-1.6deg); }
+  .file:nth-child(even) .file-exhibit { transform: rotate(1.6deg); }
 
-  .mod-foot { display: flex; align-items: center; gap: 14px; margin-top: 15px; padding-top: 13px; border-top: 1px dashed var(--line); flex-wrap: wrap; }
-  .mlink { font-size: 11.5px; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; letter-spacing: 0.02em; }
-  .mlink::before { content: "▸"; font-size: 9px; opacity: 0.7; }
-  .mlink:hover { text-decoration: underline; }
-  .nolink { font-size: 10.5px; color: var(--dim); letter-spacing: 0.1em; }
-
-  /* ---------------- FOOTER ---------------- */
-  footer {
-    border-top: 1px solid var(--line); padding: 26px 0 50px;
-    display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap;
+  .file-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 2px; }
+  .fileno { font-family: var(--stampfont); font-size: 13px; letter-spacing: 0.06em; }
+  .subj { font-family: var(--stampfont); font-size: 1.3rem; letter-spacing: 0.03em; text-transform: uppercase; }
+  .meta-row { font-size: 11px; letter-spacing: 0.05em; color: var(--ink-soft); text-transform: uppercase; margin: 6px 0 10px; }
+  .badge {
+    display: inline-block; border: 1.5px solid; padding: 1px 7px; font-size: 10.5px;
+    letter-spacing: 0.08em; font-family: var(--stampfont); transform: rotate(-1deg); margin-left: 2px;
   }
-  .foot-left { font-size: 11px; color: var(--dim); letter-spacing: 0.08em; }
-  .foot-left .hl { color: var(--mut); }
-  .foot-socials { display: flex; align-items: center; gap: 10px; }
-  .foot-socials .handle-tag { font-size: 11px; color: var(--mut); letter-spacing: 0.06em; }
+  .b-live { color: var(--stamp); border-color: var(--stamp); }
+  .b-beta { color: #8a5a08; border-color: #8a5a08; }
+  .b-wip  { color: var(--stamp2); border-color: var(--stamp2); }
 
-  @media (max-width: 640px) {
-    .telemetry { grid-template-columns: repeat(2, 1fr); }
-    .grid { grid-template-columns: 1fr; }
-    header.hero { padding: 38px 0 22px; }
+  .summary { font-size: 13.5px; margin-bottom: 10px; }
+  .summary .lbl, .caps .lbl, .dispo .lbl { font-weight: 700; }
+  .caps { font-size: 12.5px; margin-bottom: 6px; }
+  .caps .dot { color: var(--faint); margin: 0 5px; }
+  .dispo { font-size: 12.5px; }
+  .dispo a { color: var(--stamp2); text-decoration: underline; text-underline-offset: 2px; }
+  .dispo a:hover { background: rgba(28,58,110,0.08); }
+
+  /* ===== FOOTER / CONTACT ===== */
+  .contact { margin-top: 30px; }
+  .contact .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 30px; font-size: 12.5px; margin-top: 12px; }
+  .contact .line { display: flex; align-items: center; gap: 6px; border-bottom: 1px dotted var(--rule); padding: 4px 0; }
+  .contact .line .k { text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); font-size: 11px; min-width: 92px; }
+  .contact .line .dots { flex: 1; border-bottom: 1px dotted var(--rule); margin: 0 6px; height: 9px; }
+  .contact .line a { text-decoration: none; font-weight: 700; }
+  .contact .line a:hover { color: var(--stamp); }
+  .contact svg { width: 13px; height: 13px; fill: var(--ink); }
+
+  .footmeta {
+    display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    font-size: 10.5px; letter-spacing: 0.06em; color: var(--ink-soft);
+    text-transform: uppercase; margin-top: 18px;
+  }
+
+  .pagefoot { text-align: center; font-size: 10px; letter-spacing: 0.2em; color: var(--ink-soft); margin-top: 18px; text-transform: uppercase; }
+
+  @media (max-width: 680px) {
+    .sheet { padding: 30px 22px 30px; }
+    .header-grid { grid-template-columns: 1fr; }
+    .exhibit { max-width: 200px; margin: 4px auto 0; }
+    .file-grid { grid-template-columns: 84px 1fr; gap: 14px; }
+    .contact .grid2 { grid-template-columns: 1fr; }
+    .stamp.declassified { font-size: 22px; top: 60px; }
+    .control { flex-direction: column; gap: 6px; }
+    .control .col.r { text-align: left; }
   }
 </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="sheet">
 
-    <!-- ===== TOP BAR ===== -->
-    <div class="topbar">
-      <div class="sys">
-        <span class="live-pill"><span class="blip"></span> SYSTEMS ONLINE</span>
-        <span class="clock" id="clock">--:--:-- LOC</span>
+    <!-- DECOR STAMPS -->
+    <div class="stamp declassified">Declassified</div>
+    <div class="stamp eyes">Eyes Only</div>
+
+    <!-- TOP CLASSIFICATION -->
+    <div class="classbar">TOP SECRET<span class="small"> // NOFORN // ORCON</span></div>
+
+    <!-- CONTROL HEADER -->
+    <div class="control">
+      <div class="col">
+        CENTRAL INTELLIGENCE AGENCY<br>
+        DIRECTORATE OF <span class="redact" title="redacted">SCIENCE &amp; TECH</span><br>
+        DOC ID: <b>CIA-RDP96-00788R-DD</b>
       </div>
-      <div class="socials" id="topSocials"></div>
+      <div class="col r">
+        FILE: <b>DILANCHIAN, DAVIS</b><br>
+        ORIGIN: <b>LOS ANGELES, CA</b><br>
+        SHEET 01 OF 01
+      </div>
+    </div>
+    <hr class="hr">
+
+    <!-- TITLE + ABSTRACT + EXHIBIT -->
+    <div class="header-grid">
+      <div>
+        <div class="titleblock">
+          <div class="re">RE: Memorandum — Ongoing Development Activity</div>
+          <h1>Subject File:<br>Active Projects</h1>
+        </div>
+        <span class="stamp release">APPROVED FOR RELEASE<br>DATE: <span id="reldate">2026/06/01</span> · CIA/HRP</span>
+        <p class="abstract">
+          <span class="fld">1. SUMMARY.</span> Surveillance indicates SUBJECT maintains continuous output of
+          applications, tools, and <span class="redact" title="redacted">experimental apparatus</span>. The following
+          dossier enumerates known active projects. Certain capabilities remain
+          <span class="redact" title="redacted">compartmentalized</span> pending review.
+          SUBJECT operates across all channels under the alias <b>@davisdilanchian</b>.
+          <br><br>
+          <span class="fld">2. NOTE.</span> Hover any <span class="redact" title="declassify">[ redacted ]</span> field to declassify.
+        </p>
+      </div>
+      <div class="exhibit">
+        <img src="assets/figures/fig_electrode.jpg" alt="exhibit figure">
+        <div class="cap">EXHIBIT A — FIG. 4<br>SUBJECT (RECONSTRUCTED)</div>
+      </div>
     </div>
 
-    <!-- ===== HERO ===== -->
-    <header class="hero">
-      <div class="eyebrow">DAVIS DILANCHIAN <span class="star">✳</span> BUILDER LOG <span class="star">✳</span> LOS ANGELES</div>
-      <h1>Things I'm<br><span class="slash">//</span> building.</h1>
-      <p class="sub">A live readout of the apps, tools, and experiments I'm working on at any given time. Some shipped, some in beta, some still compiling. Find me everywhere as <span class="handle">@davisdilanchian</span>.</p>
+    <hr class="hr dbl">
 
-      <div class="telemetry">
-        <div class="tcell a"><span class="label">Active</span><span class="val" id="t-active">0</span></div>
-        <div class="tcell b"><span class="label">Shipped</span><span class="val" id="t-live">0</span></div>
-        <div class="tcell c"><span class="label">Platforms</span><span class="val" id="t-plat">0</span></div>
-        <div class="tcell d"><span class="label">Status</span><span class="val">LIVE</span></div>
-      </div>
-    </header>
-
-    <!-- ===== PROJECTS ===== -->
-    <div class="sec-head">
-      <span class="label">▌ Project Modules</span>
-      <span class="rule"></span>
-      <span class="label" id="count"></span>
-    </div>
+    <!-- DOSSIER -->
+    <div class="sec"><span>▌ Enumerated Project Files</span><span class="ln"></span><span class="ct" id="count"></span></div>
 
     <div class="filters" id="filters"></div>
-    <div class="grid" id="grid"></div>
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-      <div class="foot-left">© <span id="year"></span> DAVIS DILANCHIAN <span class="hl">// davisdilanchian.com</span> // static build on github pages</div>
-      <div class="foot-socials">
-        <span class="handle-tag">@davisdilanchian</span>
-        <div class="socials" id="footSocials"></div>
-      </div>
-    </footer>
+    <div id="files"></div>
+
+    <!-- CONTACT -->
+    <hr class="hr dbl">
+    <div class="contact">
+      <div class="sec"><span>▌ Known Aliases &amp; Contact Channels</span><span class="ln"></span></div>
+      <div class="grid2" id="contacts"></div>
+    </div>
+
+    <div class="footmeta">
+      <span>FORM 7-A (REV. <span id="year"></span>) · DAVISDILANCHIAN.COM</span>
+      <span>SANITIZED COPY · APPROVED FOR PUBLIC RELEASE</span>
+    </div>
+
+    <!-- BOTTOM CLASSIFICATION -->
+    <hr class="hr">
+    <div class="classbar redacted-bar">TOP SECRET<span class="small"> // ████ // ████</span></div>
+    <div class="pagefoot">— END OF FILE —</div>
 
   </div>
 
 <script>
 /* ============================================================
-   SOCIALS — same handle everywhere. Edit urls as needed.
+   CONTACT CHANNELS — same handle everywhere.
    ============================================================ */
 const HANDLE = "davisdilanchian";
 const SOCIALS = [
-  { name: "Instagram", url: "https://instagram.com/" + HANDLE,
-    svg: '<svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 0 0 2.12-1.38 5.86 5.86 0 0 0 1.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 0 0-1.38-2.12A5.86 5.86 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84M12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>' },
-  { name: "X", url: "https://x.com/" + HANDLE,
-    svg: '<svg viewBox="0 0 24 24"><path d="M18.9 1.5h3.68l-8.04 9.19L24 22.5h-7.4l-5.8-7.58-6.63 7.58H.49l8.6-9.83L0 1.5h7.59l5.24 6.93zm-1.29 18.8h2.04L6.49 3.6H4.3z"/></svg>' },
-  { name: "TikTok", url: "https://tiktok.com/@" + HANDLE,
-    svg: '<svg viewBox="0 0 24 24"><path d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.2v12.86a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .8-5.05V9.99a5.79 5.79 0 0 0-.8-.06A5.79 5.79 0 1 0 15.36 15.7V9.04a7.45 7.45 0 0 0 4.34 1.39V7.23a4.28 4.28 0 0 1-3.1-1.41z"/></svg>' },
-  { name: "YouTube", url: "https://youtube.com/@" + HANDLE,
-    svg: '<svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.11-2.13C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.39.52A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.11 2.13c1.89.52 9.39.52 9.39.52s7.5 0 9.39-.52a3 3 0 0 0 2.11-2.13A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.57V8.43L15.82 12z"/></svg>' },
-  { name: "GitHub", url: "https://github.com/ddilanchi",
-    svg: '<svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.2c-3.34.72-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>' },
-  { name: "Email", url: "mailto:ddilanchian@gmail.com",
-    svg: '<svg viewBox="0 0 24 24"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm10 7.4L3.6 6H20.4zM3 8.1V18h18V8.1l-9 6z"/></svg>' }
+  { name:"Instagram", url:"https://instagram.com/"+HANDLE, v:"@"+HANDLE,
+    svg:'<svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63 3.35.93 2.68 1.35 2.02 2.01 1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.39 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 0 0 2.12-1.38 5.86 5.86 0 0 0 1.38-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 0 0-1.38-2.12A5.86 5.86 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84M12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>' },
+  { name:"X / Twitter", url:"https://x.com/"+HANDLE, v:"@"+HANDLE,
+    svg:'<svg viewBox="0 0 24 24"><path d="M18.9 1.5h3.68l-8.04 9.19L24 22.5h-7.4l-5.8-7.58-6.63 7.58H.49l8.6-9.83L0 1.5h7.59l5.24 6.93zm-1.29 18.8h2.04L6.49 3.6H4.3z"/></svg>' },
+  { name:"TikTok", url:"https://tiktok.com/@"+HANDLE, v:"@"+HANDLE,
+    svg:'<svg viewBox="0 0 24 24"><path d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.2v12.86a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .8-5.05V9.99a5.79 5.79 0 0 0-.8-.06A5.79 5.79 0 1 0 15.36 15.7V9.04a7.45 7.45 0 0 0 4.34 1.39V7.23a4.28 4.28 0 0 1-3.1-1.41z"/></svg>' },
+  { name:"YouTube", url:"https://youtube.com/@"+HANDLE, v:"@"+HANDLE,
+    svg:'<svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.11-2.13C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.39.52A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.11 2.13c1.89.52 9.39.52 9.39.52s7.5 0 9.39-.52a3 3 0 0 0 2.11-2.13A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.57V8.43L15.82 12z"/></svg>' },
+  { name:"GitHub", url:"https://github.com/ddilanchi", v:"ddilanchi",
+    svg:'<svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.2c-3.34.72-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>' },
+  { name:"Email", url:"mailto:ddilanchian@gmail.com", v:"ddilanchian@gmail.com",
+    svg:'<svg viewBox="0 0 24 24"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm10 7.4L3.6 6H20.4zM3 8.1V18h18V8.1l-9 6z"/></svg>' }
 ];
 
 /* ============================================================
-   PROJECTS — edit this array to add/remove/update.
-   status: "live" | "beta" | "wip"   accent: grn|blu|org|red|mag|cyn|ind
+   PROJECT FILES.  Use ||double pipes|| to redact a phrase.
+   status: live | beta | wip
    ============================================================ */
-const ACCENT = { grn:"var(--grn)", blu:"var(--blu)", org:"var(--org)", red:"var(--red)", mag:"var(--mag)", cyn:"var(--cyn)", ind:"var(--ind)" };
-
 const PROJECTS = [
-  { name:"Mugula", icon:"assets/icons/mugula.png", status:"beta", accent:"mag", category:"iOS",
-    desc:"Native iMessage app with Snapchat-style photo & video editing — stickers, drawing, captions, and face filters, delivered at full resolution.",
-    cells:[["stack","Swift"],["surface","iMessage"],["build","TestFlight"]],
-    links:[{label:"TestFlight", url:"https://testflight.apple.com/"}] },
+  { name:"Mugula", icon:"assets/icons/doc/mugula.png", status:"beta", category:"iOS", codename:"BLUE BUBBLE",
+    summary:"Native iMessage application performing ||covert|| photo &amp; video editing — stickers, drawing, captions, and face filters — delivered at full resolution without ||detection||.",
+    caps:["Swift","iMessage","Camera FX"], dispo:[{label:"TestFlight", url:"https://testflight.apple.com/"}] },
 
-  { name:"Pareto", icon:"assets/icons/pareto.png", status:"live", accent:"blu", category:"iOS",
-    desc:"Get the 20% that matters most. A productivity app built around the Pareto principle.",
-    cells:[["stack","SwiftUI"],["type","Productivity"]],
-    links:[] },
+  { name:"Pareto", icon:"assets/icons/doc/pareto.png", status:"live", category:"iOS", codename:"80/20",
+    summary:"Productivity instrument engineered to isolate the ||vital 20%|| of any task set, per the Pareto principle.",
+    caps:["SwiftUI","Productivity"], dispo:[] },
 
-  { name:"Neon Forest", icon:"assets/icons/neonforest.png", status:"live", accent:"red", category:"Web",
-    desc:"Custom Shopify storefront and product line for Neon Forest Industries — laser-stippled optical gear.",
-    cells:[["stack","Shopify"],["type","Storefront"]],
-    links:[{label:"neonforestindustries.com", url:"https://neonforestindustries.com"}] },
+  { name:"Neon Forest", icon:"assets/icons/doc/neonforest.png", status:"live", category:"Web", codename:"REDWOOD",
+    summary:"Custom storefront and product line for ||Neon Forest Industries|| — laser-stippled optical apparatus.",
+    caps:["Shopify","Storefront","Hardware"], dispo:[{label:"neonforestindustries.com", url:"https://neonforestindustries.com"}] },
 
-  { name:"Dandle", icon:"assets/icons/dandle.svg", status:"live", accent:"ind", category:"Web",
-    desc:"A 3D word-building physics game — stack and topple letter tiles to form words. Built for a game jam.",
-    cells:[["engine","Three.js"],["type","Game"],["physics","real-time"]],
-    links:[{label:"dandle.online", url:"https://dandle.online"}] },
+  { name:"Dandle", icon:"assets/icons/doc/dandle.png", status:"live", category:"Web", codename:"TOPPLE",
+    summary:"A 3D word-building physics simulation — operatives stack and topple letter tiles to form words. Originated under ||game-jam conditions||.",
+    caps:["Three.js","Physics","Game"], dispo:[{label:"dandle.online", url:"https://dandle.online"}] },
 
-  { name:"DanAcademy", icon:"assets/icons/danacademy.png", status:"wip", accent:"grn", category:"iOS",
-    desc:"Adaptive learning app (Math Academy-style): a prerequisite skill-tree, spaced & interleaved review with FSRS scheduling, and a pipeline that turns sources into atomic skills.",
-    cells:[["stack","SwiftUI"],["sched","FSRS"],["type","EdTech"]],
-    links:[] },
+  { name:"DanAcademy", icon:"assets/icons/doc/danacademy.png", status:"wip", category:"iOS", codename:"TUTOR",
+    summary:"Adaptive learning system: a prerequisite skill-tree with spaced &amp; interleaved review (||FSRS scheduling||) and a pipeline converting source material into ||atomic skills||.",
+    caps:["SwiftUI","FSRS","EdTech"], dispo:[] },
 
-  { name:"Somniac", icon:"assets/icons/somniac.png", status:"wip", accent:"cyn", category:"iOS",
-    desc:"An alarm app built for sleep disorders — wake-up challenge modules, post-dismissal monitoring, medication timing, nap management, and circadian-shift tools.",
-    cells:[["stack","iOS"],["domain","Sleep/Health"]],
-    links:[] },
+  { name:"Somniac", icon:"assets/icons/doc/somniac.png", status:"wip", category:"iOS", codename:"NIGHTWATCH",
+    summary:"Alarm system designed for ||sleep disorders|| — wake challenge modules, post-dismissal monitoring, medication timing, and ||circadian-shift|| protocols.",
+    caps:["iOS","Sleep","Health"], dispo:[] },
 
-  { name:"Dannify", icon:"assets/icons/dannify.svg", status:"wip", accent:"grn", category:"Web",
-    desc:"Spotify playlist builder with LLM-powered search and curation — create and manage playlists in natural language, multi-user OAuth.",
-    cells:[["api","Spotify"],["ai","LLM"],["auth","PKCE"]],
-    links:[] },
+  { name:"Dannify", icon:"assets/icons/doc/dannify.png", status:"wip", category:"Web", codename:"EARWORM",
+    summary:"Playlist construction tool with ||LLM-directed|| search and curation against the Spotify network. Multi-operative ||PKCE OAuth||.",
+    caps:["Spotify","LLM","OAuth"], dispo:[] },
 
-  { name:"CardSnap", icon:"assets/icons/cardsnap.png", status:"wip", accent:"red", category:"iOS",
-    desc:"Business-card scanner that auto-captures at a quality threshold, extracts contacts with AI, and exports to JSON/CSV with full batch history.",
-    cells:[["stack","iOS"],["ai","Gemini"],["out","JSON/CSV"]],
-    links:[] },
+  { name:"CardSnap", icon:"assets/icons/doc/cardsnap.png", status:"wip", category:"iOS", codename:"ROLODEX",
+    summary:"Business-card interception device. Auto-captures at quality threshold, extracts contacts via ||AI optical recognition||, exfiltrates to JSON/CSV.",
+    caps:["iOS","Gemini AI","OCR"], dispo:[] },
 
-  { name:"WinWhisper", icon:"assets/icons/winwhisper.svg", status:"live", accent:"blu", category:"Tools",
-    desc:"Local Whisper-based dictation for Windows — a faster, private replacement for Win+H that runs entirely on-device.",
-    cells:[["model","Whisper"],["os","Windows"],["lic","OSS"]],
-    links:[{label:"GitHub", url:"https://github.com/ddilanchi/WinWhisper"}] },
+  { name:"WinWhisper", icon:"assets/icons/doc/winwhisper.png", status:"live", category:"Tools", codename:"GHOSTKEY",
+    summary:"On-device dictation apparatus for Windows. Replaces native Win+H; all transcription performed ||locally|| with no ||uplink||.",
+    caps:["Whisper","Windows","Open Source"], dispo:[{label:"GitHub", url:"https://github.com/ddilanchi/WinWhisper"}] },
 
-  { name:"Pinterest Board Downloader", icon:"assets/icons/pinterest.png", status:"live", accent:"red", category:"Tools",
-    desc:"Chrome extension that downloads an entire Pinterest board as a zip of original-resolution images using your logged-in session.",
-    cells:[["platform","Chrome MV3"],["out","ZIP"]],
-    links:[] }
+  { name:"Pinterest Board Downloader", icon:"assets/icons/doc/pinterest.png", status:"live", category:"Tools", codename:"DRAGNET",
+    summary:"Browser implant (Chrome MV3) extracting an entire Pinterest board as a zip of ||original-resolution|| assets via the operative's authenticated session.",
+    caps:["Chrome MV3","Extraction"], dispo:[] },
 ];
 
-/* ---------------- RENDER ---------------- */
-const statusLabel = { live:"LIVE", beta:"BETA", wip:"IN PROGRESS" };
+/* ---------------- helpers ---------------- */
+const STAT = { live:["OPERATIONAL","b-live"], beta:["FIELD TEST","b-beta"], wip:["IN DEVELOPMENT","b-wip"] };
+function redactize(s){ return s.replace(/\|\|(.+?)\|\|/g, (_,t)=>`<span class="redact" title="declassify">${t}</span>`); }
 
-function socialHTML(s){ return `<a class="soc" href="${s.url}" target="_blank" rel="noopener" title="${s.name} — @${HANDLE}" aria-label="${s.name}">${s.svg}</a>`; }
-document.getElementById('topSocials').innerHTML = SOCIALS.map(socialHTML).join('');
-document.getElementById('footSocials').innerHTML = SOCIALS.map(socialHTML).join('');
+/* contact channels */
+document.getElementById('contacts').innerHTML = SOCIALS.map(s=>`
+  <div class="line">
+    ${s.svg}<span class="k">${s.name}</span><span class="dots"></span>
+    <a href="${s.url}" target="_blank" rel="noopener">${s.v}</a>
+  </div>`).join('');
 
+/* filters */
 let active = "ALL";
 const cats = ["ALL", ...Array.from(new Set(PROJECTS.map(p=>p.category)))];
 const filtersEl = document.getElementById('filters');
-const grid = document.getElementById('grid');
+const filesEl = document.getElementById('files');
 const countEl = document.getElementById('count');
 
 function renderFilters(){
-  filtersEl.innerHTML = cats.map(c=>`<button class="chip ${c===active?'active':''}" data-c="${c}">${c}</button>`).join('');
-  filtersEl.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.c;renderFilters();renderGrid();}));
+  filtersEl.innerHTML = cats.map(c=>`<button class="tab ${c===active?'active':''}" data-c="${c}">${c}</button>`).join('');
+  filtersEl.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.c;renderFilters();renderFiles();}));
 }
 
-function renderGrid(){
+function renderFiles(){
   const list = active==="ALL" ? PROJECTS : PROJECTS.filter(p=>p.category===active);
-  countEl.textContent = String(list.length).padStart(2,'0') + " UNITS";
-  grid.innerHTML = list.map((p,i)=>`
-    <article class="mod" style="--accent:${ACCENT[p.accent]||'var(--blu)'}">
-      <div class="mod-top">
-        <span class="idx">${String(i+1).padStart(2,'0')}</span>
-        <div class="ico"><img src="${p.icon}" alt="${p.name} icon" loading="lazy"></div>
-        <div class="mod-id">
-          <div class="mod-name">${p.name}</div>
-          <div class="status"><span class="dot"></span>${statusLabel[p.status]}</div>
+  countEl.textContent = list.length + " FILES ON RECORD";
+  filesEl.innerHTML = list.map((p,i)=>{
+    const [slabel, scls] = STAT[p.status];
+    return `
+    <div class="file">
+      <div class="file-grid">
+        <div class="file-exhibit">
+          <img src="${p.icon}" alt="${p.name} exhibit" loading="lazy">
+          <div class="cap">EXHIBIT ${String.fromCharCode(66+i)}</div>
+        </div>
+        <div class="file-body">
+          <div class="file-head">
+            <span class="fileno">FILE NO. ${String(i+1).padStart(3,'0')}</span>
+            <span class="subj">${p.name}</span>
+            <span class="badge ${scls}">${slabel}</span>
+          </div>
+          <div class="meta-row">CODENAME: "${p.codename}" · CLASSIFICATION: <span class="redact" title="declassify">${p.category}</span> · ORIGIN: SUBJECT</div>
+          <div class="summary"><span class="lbl">SUMMARY:</span> ${redactize(p.summary)}</div>
+          <div class="caps"><span class="lbl">KNOWN CAPABILITIES:</span> ${p.caps.map(c=>`<span>${c}</span>`).join('<span class="dot">·</span>')}</div>
+          <div class="dispo"><span class="lbl">DISPOSITION:</span> ${
+            p.dispo.length ? p.dispo.map(d=>`SEE — <a href="${d.url}" target="_blank" rel="noopener">${d.label}</a>`).join(' · ')
+            : '<span class="redact" title="declassify">FIELD DEPLOYMENT PENDING</span>'
+          }</div>
         </div>
       </div>
-      <p class="desc">${p.desc}</p>
-      ${p.cells?.length ? `<div class="cells">${p.cells.map(c=>`<span class="cell"><b>${c[0]}</b> ${c[1]}</span>`).join('')}</div>`:''}
-      <div class="mod-foot">
-        ${p.links?.length ? p.links.map(l=>`<a class="mlink" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('')
-          : '<span class="nolink">// IN DEVELOPMENT</span>'}
-      </div>
-    </article>`).join('');
+    </div>`;
+  }).join('');
 }
 
-/* telemetry numbers */
-document.getElementById('t-active').textContent = String(PROJECTS.length).padStart(2,'0');
-document.getElementById('t-live').textContent = String(PROJECTS.filter(p=>p.status==='live').length).padStart(2,'0');
-document.getElementById('t-plat').innerHTML = String(new Set(PROJECTS.map(p=>p.category)).size).padStart(2,'0');
 document.getElementById('year').textContent = new Date().getFullYear();
-
-/* live clock */
-function tick(){
-  const d = new Date();
-  const p = n => String(n).padStart(2,'0');
-  document.getElementById('clock').textContent = `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())} LOC`;
-}
-tick(); setInterval(tick, 1000);
-
 renderFilters();
-renderGrid();
+renderFiles();
 </script>
 </body>
 </html>
